@@ -1,30 +1,24 @@
-#ifndef MAINH
-#define MAINH
-
+#ifndef our_printf
+#define our_printf
+#include <stdio.h>
 #include <stdarg.h>
-int _putchar(char c);
-int _printf(const char *format, ...);
-int print_char(va_list c);
-int print_string(va_list s);
-int print_int(va_list i);
-int print_dec(va_list d);
-int print_rev(va_list r);
-int print_bin(va_list b);
-int print_unsig(va_list u);
-int print_octal(va_list o);
-int print_x(va_list x);
-int print_X(va_list X);
-int print_rot13(va_list R);
 /**
-  * struct code_format - Struct format
-  *
-  * @sc: The specifiers
-  * @f: The function associated
-  */
-typedef struct code_format
+ * struct specifier - struct specifier
+ * @valid: the valid character.
+ * @f: the functions associated.
+ *
+ */
+typedef struct specifier
 {
-	char *sc;
+	char *valid;
 	int (*f)(va_list);
-} code_f;
-
-#endif /* HOLBERTONH */
+} spec;
+int _printf(const char *format, ...);
+int print_c(va_list args);
+int print_s(va_list args);
+int print_d(va_list args);
+int print_i(va_list args);
+int _putchar(char c);
+int print_percent(va_list args);
+int (*get_func(char x))(va_list args);
+#endif
