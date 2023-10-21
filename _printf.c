@@ -4,7 +4,7 @@
 /**
   * find_function - function that finds formats for _printf
   * calls the corresponding function.
-  * @format: format (char, string)
+  * @format: format (char, string, int, decimal)
   * Return: NULL or function associated ;
   */
 int (*find_function(const char *format))(va_list)
@@ -13,6 +13,15 @@ int (*find_function(const char *format))(va_list)
 	code_f find_f[] = {
 		{"c", print_char},
 		{"s", print_string},
+		{"i", print_int},
+		{"d", print_dec},
+		{"r", print_rev},
+		{"b", print_bin},
+		{"u", print_unsig},
+		{"o", print_octal},
+		{"x", print_x},
+		{"X", print_X},
+		{"R", print_rot13},
 		{NULL, NULL}
 	};
 
@@ -26,7 +35,7 @@ int (*find_function(const char *format))(va_list)
 }
 /**
   * _printf - function that produces output according to a format.
-  * @format: format (char, string)
+  * @format: format (char, string, int, decimal)
   * Return: size the output text;
   */
 int _printf(const char *format, ...)
